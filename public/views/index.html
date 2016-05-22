@@ -14,6 +14,9 @@
       #messages { list-style-type: none; margin: 0; padding: 0; }
       #messages li { padding: 5px 10px; }
       #messages li:nth-child(odd) { background: #eee; }
+      #messages li:nth-child(even) {background: #fff; }
+
+      .datamessage{text-align: right;}
     </style>
   </head>
   <body>
@@ -31,39 +34,11 @@
     </div>
 
 
-
-
     <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.3.js"></script>
     <script src= "/socket.io/socket.io.js"></script>
-    <script type = "text/javascript">
-      $(document).ready(function(){
-
-        var colours = ["Red", "Orange", "Yellow", "Teal", "Chartreuse", "Lavender", "Indigo"];
-        var animals = ["Aardvark", "Baboon", "Crocodile", "Dog", "Giraffe", "Rhino"];
-
-        var randColour = colours[Math.floor(Math.random()*100) % colours.length];
-        var randAnimal = animals[Math.floor(Math.random()*100) % animals.length];
-        var randNumber = Math.floor(Math.random()*100);
-        var randNickname = randColour + randAnimal + randNumber.toString();
-
-        $("#username").val(randNickname);
-      });
-
-      var socket = io();
-      $("form").submit(function(){
-        socket.emit("chatmessage", {name: $("#username").val(), text: $("#m").val()});
-        $("#m").val("");
-        return false;
-      });
-
-      socket.on("chatmessage", function(msg){
-        $("#messages").append($("<li>").text(msg.name + " said: " + msg.text));
-      });
-
-      socket.on("notification", function(msg){
-        $("#messages").append($("<li>").text(msg));
-      });
+    <script type = "text/javascript" src = "./js/index.js">
+      
     </script>
   </body>
 

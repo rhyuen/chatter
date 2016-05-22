@@ -11,6 +11,10 @@ module.exports = function(server, io){
     socket.on("chatmessage", function(msg){
       console.log("message: %s, %s", msg.name, msg.text);
       io.emit("chatmessage", msg);
+
+      socket.on("disconnect", function(){
+        io.emit("notification", "A user has left the chat.");
+      });
     });
   });
   //return server;
