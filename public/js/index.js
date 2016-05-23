@@ -20,13 +20,21 @@ $("form").submit(function(){
   return false;
 });
 
+//Marks Start of session.
+var start = new Date();
+
+function handleRelativeTime(){
+  var currentTime = new Date();
+  return "emptyDate";
+}
+
 socket.on("chatmessage", function(msg){
   $("#messages").append($("<li>")
-    .append($("<span/>", {text: msg.name + " said: " + msg.text, class: "datamessage"}))
-    .append($("<span/>", {text: "Date", style: "text-align: right"})));
+    .append($("<span/>", {text: msg.name + " said: " + msg.text, class: "messagecontent"}))
+    .append($("<span/>", {text: Math.floor(((new Date()).getTime() - start.getTime())/1000), class: "messagedate"})));
 
 });
 
 socket.on("notification", function(msg){
-  $("#messages").append($("<li>").text(msg));
+  $("#messages").append($("<li>", {text: msg, class: "notification"}));
 });

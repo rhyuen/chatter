@@ -11,26 +11,58 @@
 
       form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
       form button {width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+
+      #message_component{background-color: grey;}
+
       #messages { list-style-type: none; margin: 0; padding: 0; }
       #messages li { padding: 5px 10px; }
       #messages li:nth-child(odd) { background: #eee; }
-      #messages li:nth-child(even) {background: #fff; }
+      #messages li:nth-child(even) {background: #888; }
+      #messages li.notification{background: #f28f8f;}
 
-      .datamessage{text-align: right;}
+      #leftside{position: fixed; left: 0; border: none; color: white; width: 33%; text-align: center;}
+      #participantcontainer{position: fixed; right: 0; border: none; color: white; width: 33%; text-align: center;}
+
+      span.messagecontent{text-align: left; min-width: 80%; display:inline-block;}
+      span.messagedate{text-align: right; min-width: 20%; display: inline-block;}
     </style>
   </head>
   <body>
 
     <div class = "mdl-grid">
-      <div class = "mdl-cell mdl-cell--4-col"></div>
       <div class = "mdl-cell mdl-cell--4-col">
-        <ul id="messages"></ul>
-        <form action="">
-          <input id= "username" autocomplete="off" placeholder="Your nickname."/>
-          <input id="m" autocomplete="off" placeholder="Say what you will."/><button>Send</button>
-        </form>
+        <div id = "leftside">
+          <div id = "banner">
+            <h1>Chatter</h1>
+          </div>
+          <div id = "navigation">
+            <button>Room Navigation</button>
+          </div>
+          <div id = "metrics">
+            <h4>Session Metrics</h4>
+            <ul>
+              <li>metrics placeholder</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class = "mdl-cell mdl-cell--4-col">
+        <div id = "message_component">
+          <ul id="messages"></ul>
+          <form action="">
+            <input id= "username" autocomplete="off" placeholder="Your nickname."/>
+            <input id="m" autocomplete="off" placeholder="Say what you will."/><button>Send</button>
+          </form>
+        </div>
       </div>
       <div class = "mdl-cell mdl-cell--4-col"></div>
+        <div id = "participantcontainer">
+          <h2>In Room</h2>
+          <ul>
+            <li>Participant placeholder</li>
+          </ul>
+        </div>
     </div>
 
 
@@ -38,7 +70,7 @@
     <script src="https://code.jquery.com/jquery-1.12.3.js"></script>
     <script src= "/socket.io/socket.io.js"></script>
     <script type = "text/javascript" src = "./js/index.js">
-      
+
     </script>
   </body>
 
