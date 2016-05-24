@@ -21,20 +21,27 @@ module.exports = function(server, io){
     socket.broadcast.emit("notification", userId + " has joined the chat.");
     io.emit("participant_list", participantList);
 
-    console.log(participantList);
+    //console.log(participantList);
+    socket.on("status", function(client){
+      console.log(client);
+      console.log(client.typing);
+      if(client.typing === true)
+        io.emit("status", client);
+    });
+
 
     socket.on("chatmessage", function(msg){
       //console.log("message: %s, %s", msg.name, msg.text);
       socket.broadcast.emit("chatmessage", msg);
-
-      socket.on("disconnect", function(){
-        io.emit("notification",  userId + " has left the chat.");
-
-        //try and see if filter and reassignment works here.  I have doubts though.
-        participantList.splice(participantList.indexOf(userId), 1);
-        io.emit("participant_list", participantList);
-      });
     });
+
+    socket.on("disconnect", function(){
+      io.emit("notification",  userId + " has left the chat.");
+      //try and see if filter and reassignment works here.  I have doubts though.
+      participantList.splice(participantList.indexOf(userId), 1);
+      io.emit("participant_list", participantList);
+    });
+
   });
   //return server;
 };

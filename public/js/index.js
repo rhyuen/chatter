@@ -8,7 +8,10 @@ $(document).ready(function(){
 
 var socket = io();
 $("form").submit(function(){
-  socket.emit("chatmessage", {name: $("#username").val(), text: $("#m").val()});
+  socket.emit("chatmessage", {
+    name: $("#username").val(),
+    text: $("#m").val()
+  });
   $("#messages").append($("<li/>", {text: "You said: " + $("#m").val()}));
   $("#m").val("");
   return false;
@@ -20,12 +23,33 @@ var start = new Date();
 
 //To get relative to curr time.
 //Take CurrentTime - MarkedTime
+//Handle Rel time on client side only.  Not on server side.
 function handleRelativeTime(timeOnScreen){
   var currentTime = new Date();
-
   return "emptyDate";
 }
 
+
+//listener for when the typing bar is active.
+//check to see if textfield is full or not.
+
+$("#m").keydown(function(){
+  if($("#m").val().length ===0){
+    socket.emit("status", {
+      user: $("#username").val(),
+      typing: true
+    });
+  }
+});
+
+
+socket.on("status", function(client){
+  //console.log("Update typing status.");
+  $("#participant_list li").each(function(){
+    if($(this).text().indexOf(client.user) !== -1)
+      $(this).html(client.user + " is typing");
+  });
+});
 
 
 
@@ -46,8 +70,15 @@ socket.on("get_id", function(receivedId){
 
 //Listens to server for updates to participant list
 socket.on("participant_list", function(participantList){
+  var clientName = "";
+  if($("#username").val() !== null || $("#username").val() === ""){
+    clientName = $("#username").val();
+  }
+
   $("#participant_list").empty();
   participantList.map(function(participant){
-    $("#participant_list").append($("<li/>", {text: participant}));
+    if(participant === clientName)
+      participant += " (You)";
+    $("#participant_list").append($("<li/>", {text: participant, class: "mdl-list__item"}));
   });
 });
