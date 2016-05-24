@@ -22,12 +22,13 @@ module.exports = function(server, io){
     io.emit("participant_list", participantList);
 
     console.log(participantList);
+
     socket.on("chatmessage", function(msg){
-      console.log("message: %s, %s", msg.name, msg.text);
-      io.emit("chatmessage", msg);
+      //console.log("message: %s, %s", msg.name, msg.text);
+      socket.broadcast.emit("chatmessage", msg);
 
       socket.on("disconnect", function(){
-        io.emit("notification", "A user has left the chat.");
+        io.emit("notification",  userId + " has left the chat.");
 
         //try and see if filter and reassignment works here.  I have doubts though.
         participantList.splice(participantList.indexOf(userId), 1);

@@ -9,6 +9,7 @@ $(document).ready(function(){
 var socket = io();
 $("form").submit(function(){
   socket.emit("chatmessage", {name: $("#username").val(), text: $("#m").val()});
+  $("#messages").append($("<li/>", {text: "You said: " + $("#m").val()}));
   $("#m").val("");
   return false;
 });
