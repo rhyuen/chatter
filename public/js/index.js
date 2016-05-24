@@ -2,15 +2,8 @@
 
 $(document).ready(function(){
 
-  var colours = ["Red", "Orange", "Yellow", "Teal", "Chartreuse", "Lavender", "Indigo"];
-  var animals = ["Aardvark", "Baboon", "Crocodile", "Dog", "Giraffe", "Rhino"];
 
-  var randColour = colours[Math.floor(Math.random()*100) % colours.length];
-  var randAnimal = animals[Math.floor(Math.random()*100) % animals.length];
-  var randNumber = Math.floor(Math.random()*100);
-  var randNickname = randColour + randAnimal + randNumber.toString();
-
-  $("#username").val(randNickname);
+  //$("#username").val(randNickname);
 });
 
 var socket = io();
@@ -23,10 +16,17 @@ $("form").submit(function(){
 //Marks Start of session.
 var start = new Date();
 
-function handleRelativeTime(){
+
+//To get relative to curr time.
+//Take CurrentTime - MarkedTime
+function handleRelativeTime(timeOnScreen){
   var currentTime = new Date();
+
   return "emptyDate";
 }
+
+
+
 
 socket.on("chatmessage", function(msg){
   $("#messages").append($("<li>")
@@ -37,4 +37,16 @@ socket.on("chatmessage", function(msg){
 
 socket.on("notification", function(msg){
   $("#messages").append($("<li>", {text: msg, class: "notification"}));
+});
+
+socket.on("get_id", function(receivedId){
+  $("#username").val(receivedId);
+});
+
+//Listens to server for updates to participant list
+socket.on("participant_list", function(participantList){
+  $("#participant_list").empty();
+  participantList.map(function(participant){
+    $("#participant_list").append($("<li/>", {text: participant}));
+  });
 });

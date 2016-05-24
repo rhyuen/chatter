@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Socket.IO chat</title>
+    <title>Chatter, speak with brevity.</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
     <style>
@@ -25,6 +25,8 @@
 
       span.messagecontent{text-align: left; min-width: 80%; display:inline-block;}
       span.messagedate{text-align: right; min-width: 20%; display: inline-block;}
+
+      ul{list-style-type: none;}
     </style>
   </head>
   <body>
@@ -59,8 +61,7 @@
       <div class = "mdl-cell mdl-cell--4-col"></div>
         <div id = "participantcontainer">
           <h2>In Room</h2>
-          <ul>
-            <li>Participant placeholder</li>
+          <ul id = "participant_list">            
           </ul>
         </div>
     </div>
