@@ -23,15 +23,11 @@ module.exports = function(server, io){
 
     //console.log(participantList);
     socket.on("status", function(client){
-      console.log(client);
-      console.log(client.typing);
-      if(client.typing === true)
-        io.emit("status", client);
+      io.emit("status", client);
     });
 
 
-    socket.on("chatmessage", function(msg){
-      //console.log("message: %s, %s", msg.name, msg.text);
+    socket.on("chatmessage", function(msg){      
       socket.broadcast.emit("chatmessage", msg);
     });
 

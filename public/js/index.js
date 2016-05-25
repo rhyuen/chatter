@@ -31,23 +31,28 @@ function handleRelativeTime(timeOnScreen){
 
 
 //listener for when the typing bar is active.
-//check to see if textfield is full or not.
-
 $("#m").keydown(function(){
-  if($("#m").val().length ===0){
-    socket.emit("status", {
-      user: $("#username").val(),
-      typing: true
-    });
-  }
+  //There's a one character or so issue with the typing.
+  socket.emit("status", {
+    user: $("#username").val(),
+    typing: !($("#m").val().length === 0)
+  });
 });
 
 
 socket.on("status", function(client){
-  //console.log("Update typing status.");
+
   $("#participant_list li").each(function(){
-    if($(this).text().indexOf(client.user) !== -1)
-      $(this).html(client.user + " is typing");
+
+    //Find User in question
+    if($(this).text().indexOf(client.user) !== -1){
+      if($(this).text().indexOf("is typing") === -1)
+        $(this).html(client.user + " is typing");
+      if(client.typing === false){
+        $(this).html(client.user);
+      }
+    }
+
   });
 });
 
