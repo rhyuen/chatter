@@ -1,6 +1,7 @@
-FROM ubuntu:latest
-RUN apt-get update -y && apt-get install -y && apt-get install nodejs && apt-get install npm
-COPY . ./app
+FROM node:argon
+RUN mkdir /app
+COPY . /app
+WORKDIR /app
 RUN npm install
 EXPOSE 9999
 CMD ["node", "server.js"]
