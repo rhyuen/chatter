@@ -1,3 +1,5 @@
+"use strict";
+
 var express = require("express");
 var favicon = require("serve-favicon");
 var app = express();
@@ -26,8 +28,7 @@ require("./routes")(app, io);
   ---Add support for nicknames
   ---Show who’s online
   ---Don’t send the same message to the user that sent it himself. Instead, append the message directly as soon as he presses enter.
-
-Add “{user} is typing” functionality
+  ---Add “{user} is typing” functionality
 
 Add private messaging
 

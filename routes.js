@@ -1,3 +1,5 @@
+ "use strict";
+
 var express = require("express");
 var path = require("path");
 
@@ -7,7 +9,7 @@ module.exports = function(server, io){
   });
 
   server.get("/*", function(req, res){
-    res.send("wildcard");
+    res.redirect("/");
   });
 
 
@@ -27,7 +29,7 @@ module.exports = function(server, io){
     });
 
 
-    socket.on("chatmessage", function(msg){      
+    socket.on("chatmessage", function(msg){
       socket.broadcast.emit("chatmessage", msg);
     });
 
