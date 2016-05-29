@@ -1,7 +1,15 @@
 FROM node:argon
-RUN mkdir /app
-COPY . /app
-WORKDIR /app
-RUN npm install
+
+RUN useradd --user-group --create-home --shell /bin/false app &&\
+    npm install --global npm@3.7.5
+ENV HOME=/home/app
+
+COPY . $HOME/app
+RUN chown -R app:app $HOME/*
+
+USER app
+
+WORKDIR $HOME/app
+RUN npm install && npm cache clean
 EXPOSE 9999
 CMD ["node", "server.js"]
