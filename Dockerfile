@@ -12,4 +12,4 @@ USER app
 WORKDIR $HOME/app
 RUN npm install && npm cache clean
 EXPOSE 9999
-CMD ["node", "server.js"]
+CMD ["npm", "start"]

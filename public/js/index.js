@@ -1,19 +1,32 @@
 //index.js
 
+var socket = io();
+
 $(document).ready(function(){
 
 });
 
+var totalElapsedTime = new Date();
 
 document.addEventListener("visibilitychange", function(){
   if(document.hidden){
     console.log("Set to User Status to AFK");
+
+    var timeStoppedAt = new Date().toLocaleString();
+
+    socket.emit("afk", {name: $("#username").val(), time: timeStoppedAt});
+
+    var diff = totalElapsedTime - timeStoppedAt;
+    $("#total_elapsed_time").text(totalElapsedTime);
+    var normalizedDiff = Math.abs(diff)/1000;
+    console.log(normalizedDiff);
+    $("#total_active_time").text(normalizedDiff);
   }else{
     console.log("Set to Available");
   }
 });
 
-var socket = io();
+
 $("form").submit(function(){
   socket.emit("chatmessage", {
     name: $("#username").val(),
@@ -23,15 +36,11 @@ $("form").submit(function(){
   $("#messages")
     .append($("<li/>")
     .append($("<span/>", {text: "You said: " + $("#m").val(), class: "messagecontent"}))
-    .append($("<span/>", {text: "time"})));
+    .append($("<span/>", {text: new Date().toLocaleString()})));
 
   $("#m").val("");
   return false;
 });
-
-//Marks Start of session.
-var start = new Date();
-
 
 //To get relative to curr time.
 //Take CurrentTime - MarkedTime
@@ -66,7 +75,6 @@ socket.on("status", function(client){
       if($(this).text().indexOf("is typing") === -1){
         $(this).html(client.user + " is typing");
       }
-
       if(client.typing === false){
         $(this).html(client.user);
       }
@@ -74,12 +82,19 @@ socket.on("status", function(client){
   });
 });
 
+socket.on("afk", function(client){
+  //find the element that emitted afk status
+  //find the el on client and change it.
+  //IDENTIFY BY NAME TEXT and CHANGE VISIBILITY ICON
+  //$("#afk")
+  $("")
+});
 
 
 socket.on("chatmessage", function(msg){
   $("#messages").append($("<li/>")
     .append($("<span/>", {text: msg.name + " said: " + msg.text, class: "messagecontent"}))
-    .append($("<span/>", {text: "time"})));
+    .append($("<span/>", {text: new Date().toLocaleString()})));
 });
 
 
@@ -113,6 +128,6 @@ socket.on("participant_list", function(participantList){
         .append($("<i/>", {class: "material-icons mdl-list__item-avatar", text: "person"}))
         .append($("<span/>", {text: participant})))
       .append($("<span/>"))
-      .append($("<i/>", {class: "material-icons", text: "star"})));
+      .append($("<i/>", {class: "material-icons", text: "visibility"})));
   });
 });

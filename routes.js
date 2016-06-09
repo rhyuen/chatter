@@ -24,11 +24,19 @@ module.exports = function(server, io){
     io.emit("participant_list", participantList);
 
     //console.log(participantList);
+
+    //FOR TYPING STATUS
     socket.on("status", function(client){
       io.emit("status", client);
     });
 
+    //FOR AFK
+    socket.on("afk", function(client){
+      console.log(client);
+      io.emit("afk", client.name);
+    });
 
+    //FOR CHAT MESSAGE
     socket.on("chatmessage", function(msg){
       socket.broadcast.emit("chatmessage", msg);
     });
@@ -40,8 +48,7 @@ module.exports = function(server, io){
       io.emit("participant_list", participantList);
     });
 
-  });
-  //return server;
+  });  
 };
 
 function getRandomParticipantName(){

@@ -23,8 +23,8 @@
       #leftside{position: fixed; left: 0; border: none; color: white; width: 33%; text-align: center;}
       #participantcontainer{position: fixed; right: 0; border: none; color: white; width: 33%; text-align: center;}
 
-      span.messagecontent{text-align: left; min-width: 80%; display:inline-block;}
-      span.messagedate{text-align: right; min-width: 20%; display: inline-block;}
+      span.messagecontent{text-align: left; min-width: 70%; display:inline-block;}
+      span.messagedate{text-align: right; min-width: 30%; display: inline-block;}
 
       ul{list-style-type: none;}
       #participant_list li{color: white;}
@@ -44,7 +44,19 @@
           <div id = "metrics">
             <h4>Session Metrics</h4>
             <ul>
-              <li>metrics placeholder</li>
+              <li>Metrics Placeholder</li>
+              <li>
+                <span>Total Elapsed Time:</span>
+                <span id = "total_elapsed_time"></span>
+              </li>
+              <li>
+                <span>Total Active Time:</span>
+                <span id = "total_active_time"></span>
+              </li>
+              <li>
+                <span>Ratio</span>
+                <span id = "eff_ratio"></span>
+              </li>
             </ul>
           </div>
         </div>
