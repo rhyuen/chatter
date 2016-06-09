@@ -2,10 +2,6 @@
 
 var socket = io();
 
-$(document).ready(function(){
-
-});
-
 var totalElapsedTime = new Date();
 
 document.addEventListener("visibilitychange", function(){
