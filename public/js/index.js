@@ -72,10 +72,10 @@ $(document).ready(function(){
       //Find User in question
       if($(this).text().indexOf(client.user) !== -1){
         if($(this).text().indexOf("is typing") === -1){
-          $(this).html(client.user + " is typing");
+          $(this).parent().find(".par_list_par_typing > i").text("chat");
         }
         if(client.typing === false){
-          $(this).html(client.user);
+          $(this).parent().find(".par_list_par_typing > i").text("");
         }
       }
     });
@@ -119,10 +119,8 @@ $(document).ready(function(){
     });
   });
 
-  //Listens to server for updates to participant list
-  //Only gets redrawn when someone new joins.
+
   socket.on("participant_list", function(participantList){
-    //Appends your name with (You) so you know who you are.
     var clientName = "";
     if($("#username").val() !== null || $("#username").val() === ""){
       clientName = $("#username").val();
@@ -132,7 +130,6 @@ $(document).ready(function(){
 
     $("#room_count").text(participantList.length);
 
-    //this needs ot persist after users type stuff.
     participantList.map(function(participant){
 
       var yourselfIdentifier = (participant === clientName) ? " (You) " : "";
@@ -144,7 +141,8 @@ $(document).ready(function(){
               .append($("<i/>", {class: "material-icons mdl-list__item-avatar", text: "person"}))
             .append($("<span/>", {class: "par_list_par_name", text: participant}))
             .append($("<span/>", {class: "par_list_par_you", text: yourselfIdentifier}))
-            .append($("<span/>", {class: "par_list_par_typing", text: "type"}))
+            .append($("<span/>", {class: "par_list_par_typing"})
+              .append($("<i/>", {class: "material-icons"})))
             .append($("<span/>", {class: "par_list_par_afk"})
               .append($("<i/>", {class: "material-icons", text: "visibility"}))))));
     });

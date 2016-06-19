@@ -10,6 +10,6 @@ RUN chown -R app:app $HOME/*
 USER app
 
 WORKDIR $HOME/app
-RUN npm install && npm cache clean
+RUN npm install --production && npm cache clean
 EXPOSE 9999
 CMD ["npm", "start"]
