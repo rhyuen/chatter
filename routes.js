@@ -33,7 +33,7 @@ module.exports = function(server, io){
     //FOR AFK
     socket.on("afk", function(client){
       console.log(client);
-      io.emit("afk", client.name);
+      io.emit("afk", client);
     });
 
     //FOR CHAT MESSAGE
@@ -48,7 +48,7 @@ module.exports = function(server, io){
       io.emit("participant_list", participantList);
     });
 
-  });  
+  });
 };
 
 function getRandomParticipantName(){

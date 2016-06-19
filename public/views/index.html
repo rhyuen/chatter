@@ -23,11 +23,12 @@
       #leftside{position: fixed; left: 0; border: none; color: white; width: 33%; text-align: center;}
       #participantcontainer{position: fixed; right: 0; border: none; color: white; width: 33%; text-align: center;}
 
-      span.messagecontent{text-align: left; min-width: 70%; display:inline-block;}
-      span.messagedate{text-align: right; min-width: 30%; display: inline-block;}
+      span.messagecontent{text-align: left; min-width: 75%; display:inline-block;}
+      span.messagedate{text-align: right; min-width: 25%; display: inline-block;}
 
       ul{list-style-type: none;}
       #participant_list li{color: white;}
+      #metrics{color: black;}
     </style>
   </head>
   <body>
@@ -41,23 +42,31 @@
           <div id = "navigation">
             <button>Room Navigation</button>
           </div>
-          <div id = "metrics">
-            <h4>Session Metrics</h4>
-            <ul>
-              <li>Metrics Placeholder</li>
-              <li>
-                <span>Total Elapsed Time:</span>
-                <span id = "total_elapsed_time"></span>
-              </li>
-              <li>
-                <span>Total Active Time:</span>
-                <span id = "total_active_time"></span>
-              </li>
-              <li>
-                <span>Ratio</span>
-                <span id = "eff_ratio"></span>
-              </li>
-            </ul>
+
+          <div id = "metrics" class = "mdl-card">
+            <div class = "mdl-card__title">
+              <h4 class = "mdl-card__title-text">Session Metrics</h4>
+            </div>
+            <table class = "mdl-data-table">
+              <tbody>
+                <tr>
+                  <td>Total Elapsed Time:</td>
+                  <div class = "mdl-layout-spacer"></div>
+                  <td id = "total_elapsed_time"></td>
+                </tr>
+                <tr>
+                  <td>Total Active Time:</td>
+                  <div class = "mdl-layout-spacer"></div>
+                  <td id = "total_active_time"></td>
+                </tr>
+                <tr>
+                  <td>Ratio</td>
+                  <div class = "mdl-layout-spacer"></div>
+                  <td id = "eff_ratio"></td>
+                </tr>
+                </ul>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
