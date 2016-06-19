@@ -31,6 +31,7 @@ module.exports = function(server, io){
     });
 
     //FOR AFK
+    //@param client = {name: String, afk: Bool", time: Date};
     socket.on("afk", function(client){
       console.log(client);
       io.emit("afk", client);

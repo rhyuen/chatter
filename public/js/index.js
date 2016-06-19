@@ -81,20 +81,14 @@ $(document).ready(function(){
     });
   });
 
-  //Persist after typing and AFK
   socket.on("afk", function(client){
-    //find the element that emitted afk status
-    //find the el on client and change it.
-    //IDENTIFY BY NAME TEXT and CHANGE VISIBILITY ICON
-    //$("#afk")
-    console.log("afk");
-    $("#participant_list li").each(function(){
+    $(".par_list_par_name").each(function(){
 
-      $(this).find("span > span").each(function(){
-        console.log($(this).text());
-        if($(this).text() === client.username)
-          selectedIcon.text("visibility off");
-      });
+      if($(this).text() ===  client.name){
+        var clientIsAfk = (client.afk) ? "" : "visibility";
+        $(this).parent().find(".par_list_par_afk > i").text(clientIsAfk);
+      }
+
     });
   });
 
@@ -144,7 +138,7 @@ $(document).ready(function(){
             .append($("<span/>", {class: "par_list_par_typing"})
               .append($("<i/>", {class: "material-icons"})))
             .append($("<span/>", {class: "par_list_par_afk"})
-              .append($("<i/>", {class: "material-icons", text: "visibility"}))))));
+              .append($("<i/>", {class: "material-icons"}))))));
     });
   });
 });
