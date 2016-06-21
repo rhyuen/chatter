@@ -54,6 +54,7 @@ $(document).ready(function(){
       .append($("<span/>", {text: new Date().toLocaleString()})));
 
     $("#m").val("");
+    $("#messages").scrollTop = $("#messages").scrollHeight;
     return false;
   });
 
