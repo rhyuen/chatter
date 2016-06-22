@@ -35,8 +35,13 @@ $(document).ready(function(){
     }
   });
 
+  $("#m").keypress(function(e){
+    if(e.which == 13)
+      $("form").submit();
+  });
 
   $("form").submit(function(){
+
     socket.emit("chatmessage", {
       name: $("#username").val(),
       text: $("#m").val()
