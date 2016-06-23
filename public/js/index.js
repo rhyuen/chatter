@@ -55,8 +55,9 @@ $(document).ready(function(){
 
     $("#messages")
       .append($("<li/>")
-      .append($("<span/>", {text: "You said: " + $("#m").val(), class: "messagecontent"}))
-      .append($("<span/>", {text: new Date().toLocaleString()})));
+      .append($("<span/>", {text: "You said: ", class: "messageuser"}))
+      .append($("<span/>", {text: $("#m").val(), class: "messagecontent"}))
+      .append($("<span/>", {text: new Date().toLocaleTimeString()})));
 
     $("#m").val("");
     $("#messages").scrollTop = $("#messages").scrollHeight;
