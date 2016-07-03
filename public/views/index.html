@@ -4,63 +4,7 @@
     <title>Chatter, speak with brevity.</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
-    <style>
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      body {
-        font: 13px Helvetica, Arial;
-        background: url("./images/nightsky.jpg") center/cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-      }
-      form {
-        background: #555;
-        padding: 0.25%;
-        position: fixed;
-        bottom: 1.5%;
-        width: 33%;
-        height: 15%;
-        display: inline-block;
-      }
-      form input { border: 0; padding: 10px; max-width: 70%; color: white; position: relative; top: 10px; left: 20px; margin-bottom: 30px;}
-      form textarea {background-color: white; max-width: 70%; display: inline-block; position: relative; top: 10px; left: 20px; }
-      form button {width: 5%; background: rgb(130, 224, 255); border: none; padding: 10px; position: relative; left: 80%; bottom: 25px;}
-
-      #message_component{background-color: white; height: 80%; width: 33%; position: fixed;}
-      #messages { list-style-type: none; margin: 0; padding: 0; top: 0; overflow-y: scroll;}
-      #messages li { padding: 5px 10px; }
-      #messages li:nth-child(odd) { background: #eee; }
-      #messages li:nth-child(even) {background: #888; }
-      #messages li.notification{background: #f28f8f;}
-
-
-      #leftside{position: fixed; left: 0; border: none; color: white;  width: 33%; text-align: center;}
-      #leftside_content_container{margin-bottom: 40px;}
-      #leftside div{width: 90%; margin-left: auto; margin-right: auto;}
-      #leftside div * {margin-left: auto; margin-right: auto;}
-      #participantcontainer{position: fixed; right: 0; border: none; color: white; width: 33%; text-align: center;}
-
-      span.messageuser{
-        text-align: left;
-        width: 15%;
-        max-width: 15%;
-        display: inline-block;
-      }
-      span.messagecontent{
-        text-align: left;
-        width: 70%;
-        max-width: 70%;
-        display:inline-block;
-      }
-      span.messagedate{
-        width: 15%;
-        text-align: right;
-        max-width: 15%;
-        display: inline-block;
-      }
-
-      #participant_list li{color: white;}
-      #metrics{color: black;}
-    </style>
+    <link rel= "stylesheet" type = "text/css" href = "../css/index.css">
   </head>
   <body>
     <div class = "mdl-grid">
@@ -68,7 +12,7 @@
       <div class = "mdl-cell mdl-cell--3-col">
         <div id = "leftside">
           <div id = "banner">
-            <h1>Chatter</h1>
+            <h1><a href = "/">Chatter</a></h1>
           </div>
 
           <div id = "metrics" class = "mdl-card">
@@ -118,14 +62,20 @@
       <div class = "mdl-cell mdl-cell--4-col">
         <div id = "message_component">
           <ul id="messages"></ul>
-          <form action="">
+          <form id = "chatterbox" action="">
             <input id= "username" class = "mdl-textfield__input" autocomplete="off" placeholder="Your nickname." disabled="true"/>
             <textarea id="m" class = "mdl-textfield__input" type = "text" rows= "3" placeholder="Say what you will."></textarea>
             <button class = "mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Send</button>
+            <div id = "action_bar">
+              <span><i class = "material-icons" title = "Download the entire conversation!">get_app</i></span>
+              <span><i class = "material-icons" title = "Send invites via email!">email</i></span>
+              <span><i class = "material-icons" title = "Share via Social Media!">share</i></span>
+            </div>
           </form>
         </div>
       </div>
 
+      <!--9 participants max.-->
       <div class = "mdl-cell mdl-cell--4-col">
         <div id = "participantcontainer">
           <h2>In Room (<span id = "room_count">1</span>)</h2>

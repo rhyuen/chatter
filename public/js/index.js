@@ -41,6 +41,11 @@ $(document).ready(function(){
   });
 
   $("form").submit(function(){
+    //Prevent Empty String messages from being sent.
+    if($.trim($("#m").val()) === ""){      
+      return false;
+    }
+
 
     socket.emit("chatmessage", {
       name: $("#username").val(),
@@ -107,8 +112,12 @@ $(document).ready(function(){
   });
 
 
-  socket.on("notification", function(msg){
-    $("#messages").append($("<li>", {text: msg, class: "notification"}));
+  socket.on("notification", function(notif){
+    if(notif.type === "JOIN"){
+      $("#messages").append($("<li>", {text: notif.message, class: "notification-join"}));
+    }else{
+      $("#messages").append($("<li>", {text: notif.message, class: "notification-leave"}));
+    }
   });
 
   //Setup Initial Anon User

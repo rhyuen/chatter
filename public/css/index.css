@@ -1,0 +1,106 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font: 13px Helvetica, Arial;
+  background: url("../images/nightsky.jpg") center/cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+form {
+  background: #555;
+  padding: 0.25%;
+  position: fixed;
+  bottom: 1.5%;
+  width: 33%;
+  height: 15%;
+  display: inline-block;
+  color: white;
+}
+form input {
+  border: 0;
+  padding: 10px;
+  max-width: 70%;
+  color: white;
+  position: relative;
+  top: 10px;
+  left: 20px;
+  margin-bottom: 30px;
+}
+form textarea {
+  background-color: white;
+  max-width: 70%;
+  display: inline-block;
+  position: relative;
+  top: 10px;
+  left:20px;
+}
+form button {
+  width: 5%;
+  background: rgb(130, 224, 255);
+  border: none;
+  padding: 10px;
+  position: relative;
+  left: 80%;
+  bottom: 25px;
+}
+
+#action_bar span{
+  position: relative;
+  bottom: 15px;
+  left: 10px;
+  padding-left: 5px;
+}
+
+
+#message_component{background-color: white; height: 80%; width: 33%; position: fixed; border: none;}
+#messages { list-style-type: none; margin: 0; padding: 0; top: 0; overflow-y: scroll; border: none;}
+#messages li { padding: 5px 10px;}
+#messages li:nth-child(odd) { background: #eee; }
+#messages li:nth-child(even) {background: #888; color: white;}
+#messages li.notification-join{background: rgb(187, 210, 176);}
+#messages li.notification-leave{background: #f28f8f;}
+#messages li span{vertical-align: middle;}
+
+
+#leftside{position: fixed; left: 0; border: none; color: white;  width: 33%; text-align: center;}
+#leftside_content_container{margin-bottom: 40px;}
+#leftside div{width: 90%; margin-left: auto; margin-right: auto;}
+#leftside div * {margin-left: auto; margin-right: auto;}
+
+#participantcontainer{
+  background-color: rgb(136, 153, 227);
+  position: fixed; right: 0;
+  border: none;
+  color: white;
+  width: 33%;
+  text-align: center;
+}
+#participant_list{
+  background-color:rgb(199, 223, 147);
+  color: black;
+  padding-left: 60px;
+}
+
+span.messageuser{
+  text-align: left;
+  width: 15%;
+  max-width: 15%;
+  display: inline-block;
+}
+span.messagecontent{
+  text-align: left;
+  width: 70%;
+  max-width: 70%;
+  display:inline-block;
+}
+span.messagedate{
+  width: 15%;
+  text-align: right;
+  max-width: 15%;
+  display: inline-block;
+}
+
+#participant_list li{color: white;}
+#metrics{color: black;}
+#banner{
+  background-color: white;
+}

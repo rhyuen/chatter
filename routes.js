@@ -8,6 +8,11 @@ module.exports = function(server, io){
     res.sendFile(path.join(__dirname, "public/views/index.html"));
   });
 
+  //For custom channels
+  // server.post("/:channelname", function(req, res){
+  //   res.sendFile(path.join(__dirname, "public/views/index.html"));
+  // });
+
   server.get("/*", function(req, res){
     res.redirect("/");
   });
@@ -20,10 +25,12 @@ module.exports = function(server, io){
     participantList.push(userId);
 
     socket.emit("get_id", userId);
-    socket.broadcast.emit("notification", userId + " has joined the chat.");
+    socket.broadcast.emit("notification", {
+      type: "JOIN",
+      message: userId + " has joined the chat."
+    });
     io.emit("participant_list", participantList);
 
-    //console.log(participantList);
 
     //FOR TYPING STATUS
     socket.on("status", function(client){
@@ -43,7 +50,10 @@ module.exports = function(server, io){
     });
 
     socket.on("disconnect", function(){
-      io.emit("notification",  userId + " has left the chat.");
+      io.emit("notification",  {
+        type: "LEAVE",
+        message: userId + " has left the chat."
+      });
       //try and see if filter and reassignment works here.  I have doubts though.
       participantList.splice(participantList.indexOf(userId), 1);
       io.emit("participant_list", participantList);
