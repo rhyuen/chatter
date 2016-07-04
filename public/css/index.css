@@ -26,7 +26,7 @@ form input {
   margin-bottom: 30px;
 }
 form textarea {
-  background-color: white;
+  background: white;
   max-width: 70%;
   display: inline-block;
   position: relative;
@@ -61,7 +61,14 @@ form button {
 #messages li span{vertical-align: middle;}
 
 
-#leftside{position: fixed; left: 0; border: none; color: white;  width: 33%; text-align: center;}
+#leftside{
+  position: fixed;
+  left: 0;
+  border: none;
+  color: white;
+  width: 33%;
+  text-align: center;
+}
 #leftside_content_container{margin-bottom: 40px;}
 #leftside div{width: 90%; margin-left: auto; margin-right: auto;}
 #leftside div * {margin-left: auto; margin-right: auto;}
@@ -99,8 +106,22 @@ span.messagedate{
   display: inline-block;
 }
 
-#participant_list li{color: white;}
+
 #metrics{color: black;}
 #banner{
   background-color: white;
 }
+#timer{
+  margin-top: 25px;
+  width: 100%;
+  color: black;
+  font-size: 14px;
+}
+
+.tealuser {color: white; background-color: teal;}
+.reduser{color: white; background-color: red;}
+.yellowuser{color: black; background-color: yellow;}
+.orangeuser{color: black; background-color: orange;}
+.greenuser{color: white; background-color: green;}
+.lavenderuser{color: black; background-color: lavender;}
+.indigouser{color: white; background-color: indigo;}

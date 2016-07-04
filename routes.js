@@ -68,7 +68,7 @@ module.exports = function(server, io){
 };
 
 function getRandomParticipantName(){
-  var colours = ["Red", "Orange", "Yellow", "Teal", "Chartreuse", "Lavender", "Indigo"];
+  var colours = ["Red", "Orange", "Yellow", "Teal", "Green", "Lavender", "Indigo"];
   var animals = ["Aardvark", "Baboon", "Crocodile", "Dog", "Giraffe", "Rhino"];
 
   var randColour = colours[Math.floor(Math.random()*100) % colours.length];

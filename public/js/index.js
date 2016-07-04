@@ -130,6 +130,31 @@ $(document).ready(function(){
   });
 
 
+
+  function colorToCssClass(colour){
+    var colourToCss = {
+      "Red": "reduser",
+      "Teal": "tealuser",
+      "Yellow": "yellowuser",
+      "Green": "greenuser",
+      "Lavender": "lavenderuser",
+      "Indigo": "indigouser",
+      "Orange": "orangeuser"
+    };
+    console.log(colourToCss[colour]);
+    return colourToCss[colour];
+  }
+
+  function handleColourForParList(participantName){
+    var listOfColours = ["Red", "Orange", "Yellow", "Teal", "Green", "Lavender", "Indigo"];
+    var startsWithColour = listOfColours.filter(function(colour){
+      return participantName.startsWith(colour);
+    });
+    return colorToCssClass(startsWithColour);
+  }
+
+
+
   socket.on("participant_list", function(participantList){
     var clientName = "";
     if($("#username").val() !== null || $("#username").val() === ""){
@@ -144,8 +169,9 @@ $(document).ready(function(){
 
       var yourselfIdentifier = (participant === clientName) ? " (You) " : "";
 
+
       $("#participant_list")
-        .append($("<li/>", {class: "mdl-list__item"})
+        .append($("<li/>", {class: "mdl-list__item " + handleColourForParList(participant)})
           .append($("<span/>", {class: "mdl-list__item-primary-content"})
             .append($("<span/>", {class: "par_list_par_avatar"})
               .append($("<i/>", {class: "material-icons mdl-list__item-avatar", text: "person"}))
