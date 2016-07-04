@@ -25,10 +25,8 @@ require("./routes")(app, io);
 
 /*
   Add private messaging
-
   Add channels
   Add email support
-  Cards for Partiicpant list.
   Colours for names.
   Timer
 */

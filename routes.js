@@ -8,6 +8,11 @@ module.exports = function(server, io){
     res.sendFile(path.join(__dirname, "public/views/index.html"));
   });
 
+
+  server.get("/landing", function(req, res){
+    res.sendFile(path.join(__dirname, "public/views/landing.html"));
+  });
+
   //For custom channels
   // server.post("/:channelname", function(req, res){
   //   res.sendFile(path.join(__dirname, "public/views/index.html"));

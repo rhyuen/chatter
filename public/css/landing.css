@@ -1,0 +1,43 @@
+html{
+  background-color: grey;
+  border: none;
+}
+
+#slideshow{
+  width: 100%;
+  height: 50%;
+  border: none;
+  margin: auto;
+  background-color: pink;
+  position: relative;
+}
+
+
+#slide_indicator{
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+}
+
+.dot{
+  custor: pointer;
+  height: 13px;
+  width: 13px;
+  background-color: #fff;
+  border-radius: 50%;
+  display: inline-block;
+
+}
+
+.prev_slide, .next_slide{
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  color: white
+  font-weight: bold;
+  font-size: 18px;
+}
+.next_slide{
+  right: 0;
+}

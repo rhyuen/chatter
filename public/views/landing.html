@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chatter, for when you have to work with strangers.</title>
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
+    <link rel = "stylesheet" type = "text/css" href = "../css/landing.css">
+  </head>
+  <body>
+
+
+
+  <div id = "main_content">
+    <div id = "slideshow">
+      <div class = "slide">
+        <div class = "content">
+          <img src = "../images/fw3.jpg"></img>
+        </div>
+      </div>
+      <div class = "slide">
+        <div class = "content">
+          <img src = "../images/fw4.jpg"></img>
+        </div>
+      </div>
+      <div class = "slide">
+        <div class = "content">
+          <img src = "../images/fw2.jpg"></img>
+        </div>
+      </div>
+
+      <a class = "prev_slide">&#10094;</a>
+      <a class = "next_slide">&#10095;</a>
+
+      <div id = "slide_indicator">
+        <span class = "dot"></span>
+        <span class = "dot"></span>
+        <span class = "dot"></span>
+      </div>
+    </div>
+  </div>
+
+  <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+  <script type = "text/javascript">
+
+  var slideIndex = 0;
+  startSlideShow();
+
+  function startSlideShow(){
+    var slides = document.getElementsByClassName("slide");
+    var dots = document.getElementsByClassName("dot");
+
+    for(var i = 0; i < slides.length; i++){
+      slides[i].style.display = "none";
+      dots[i].style.backgroundColor = "white";
+    }
+
+    slides[slideIndex].style.display = "block";
+    dots[slideIndex++].style.backgroundColor = "blue";
+
+    if(slideIndex >= slides.length){
+      slideIndex = 0;
+    }
+    setTimeout(startSlideShow, 2000);
+  }
+  </script>
+
+
+  </body>
+</html>

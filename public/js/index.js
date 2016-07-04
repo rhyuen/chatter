@@ -42,7 +42,7 @@ $(document).ready(function(){
 
   $("form").submit(function(){
     //Prevent Empty String messages from being sent.
-    if($.trim($("#m").val()) === ""){      
+    if($.trim($("#m").val()) === ""){
       return false;
     }
 
@@ -104,11 +104,11 @@ $(document).ready(function(){
     });
   });
 
-
   socket.on("chatmessage", function(msg){
     $("#messages").append($("<li/>")
-      .append($("<span/>", {text: msg.name + " said: " + msg.text, class: "messagecontent"}))
-      .append($("<span/>", {text: new Date().toLocaleString()})));
+      .append($("<span/>", {text: msg.name + " said: ", class: "messageuser"}))
+      .append($("<span/>", {text: msg.text, class: "messagecontent"}))
+      .append($("<span/>", {text: new Date().toLocaleTimeString()})));
   });
 
 
