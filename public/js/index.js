@@ -130,8 +130,7 @@ $(document).ready(function(){
   });
 
 
-
-  function colorToCssClass(colour){
+  function handleColourForParList(participantName){
     var colourToCss = {
       "Red": "reduser",
       "Teal": "tealuser",
@@ -141,16 +140,12 @@ $(document).ready(function(){
       "Indigo": "indigouser",
       "Orange": "orangeuser"
     };
-    console.log(colourToCss[colour]);
-    return colourToCss[colour];
-  }
 
-  function handleColourForParList(participantName){
-    var listOfColours = ["Red", "Orange", "Yellow", "Teal", "Green", "Lavender", "Indigo"];
-    var startsWithColour = listOfColours.filter(function(colour){
+    var startsWithColour = Object.keys(colourToCss).filter(function(colour){
       return participantName.startsWith(colour);
     });
-    return colorToCssClass(startsWithColour);
+
+    return colourToCss[startsWithColour];
   }
 
 
@@ -168,7 +163,6 @@ $(document).ready(function(){
     participantList.map(function(participant){
 
       var yourselfIdentifier = (participant === clientName) ? " (You) " : "";
-
 
       $("#participant_list")
         .append($("<li/>", {class: "mdl-list__item " + handleColourForParList(participant)})
